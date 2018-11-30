@@ -13,7 +13,6 @@
             };
         },
         mounted() {
-
         },
         methods: {}
     };

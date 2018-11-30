@@ -6,12 +6,17 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
-const merge = require('./webpack.config.base');
-module.exports =  merge(merge, {
-        mode: "development",
+const baseConfig = require('./webpack.config.base');
+module.exports =  merge(baseConfig, {
+        mode: "production",
         optimization: {
             minimizer: [
+                new UglifyJsPlugin({
+                    cache: true,
+                    parallel: true
+                }),
                 new OptimizeCSSAssetsPlugin({}), // 生产环境 会 压缩css代码
             ],
             splitChunks: {
