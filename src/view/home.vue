@@ -1,13 +1,11 @@
 <template>
     <div class="ydt_container">
-        <div class="rem-test">{{ydt_value}}</div>
-        <p>123开22</p>
         <div @click="cityPicker">
             <label>所在地区:</label>
             <input readonly type="text" :placeholder="selecedCity?(myAddressProvince+myAddressCity+myAddresscounty):'地址'" />
         </div>
         <transition name="fade">
-            <div class="picker-city-box" v-if="showCityPicker"></div>
+            <div class="picker-city-box" @click="cancelCityData" v-if="showCityPicker"></div>
         </transition>
         <transition name="slide">
             <!-- <div class="picker-city-box" v-if="showCityPicker"> -->
@@ -98,15 +96,6 @@
     };
 </script>
 <style scoped lang="scss">
-    $red:red;
-    $blue:blue;
-
-    .rem-test {
-        width: 100px;
-        font-size: 28PX;
-        color: $blue;
-    }
-
     .menu-box {
         width: 100%;
         box-sizing: border-box;
